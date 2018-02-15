@@ -1,0 +1,116 @@
+
+
+\documentclass[fontsize=12pt,letter,twoside,open=right,titlepage,fleqn,%
+               headinclude,,footinclude,BCOR5mm,%
+               numbers=noenddot,cleardoublepage=empty,%
+               captions=tableheading]{scrreprt}
+               
+\usepackage[spanish,american,mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{varioref}
+\usepackage[style=philosophy-modern,hyperref,square,natbib,backend=biber]{biblatex}
+\usepackage{chngpage} %
+\usepackage{calc}     %
+\usepackage{listings} %
+\usepackage{graphicx} % 
+\usepackage{subfig}   % Se utiliza para poder incluir mas de una imagen por figura
+\usepackage{multicol} % Permite dividir las tablas
+\usepackage{multirow} % Para tablas tipo Excel
+\usepackage{makeidx}  % Se utiliza para el Índice
+\usepackage{relsize}  %
+\usepackage{lipsum}   % Permite usar el dummy text
+\usepackage[eulerchapternumbers,subfig,beramono,eulermath,pdfspacing,listings]{classicthesis}
+\usepackage{arsclassica}
+
+
+\renewcommand\formatchapter[1]{%
+    \setbox0=\hbox{\chapterNumber\thechapter\hspace{10pt}\vline\ }%
+    \begin{minipage}[t]{\dimexpr\linewidth-\wd0\relax}%
+    \raggedright\spacedallcaps{#1}%
+    \end{minipage}%
+} % Permite usar títulos de los capítulos mas largos sin que se encime;
+% TOMADO DE http://tex.stackexchange.com/questions/228220/problem-with-long-chapter-title-and-arsclassia
+
+%******************************************************************
+
+\usepackage{textcomp, gensymb} %permite escribir el símbolo de grado
+\usepackage{array,tabularx,tabulary} %% Tablas
+% \usepackage{tabularx}  % for 'tabularx' environment and 'X' column type
+ \usepackage{ragged2e}  % for '\RaggedRight' macro (allows hyphenation)
+ \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X} 
+
+\usepackage{mathtools}
+\usepackage{pgfplots} % Graficar
+
+%\pgfplotsset{compat=1.13  every  axis/.append  style={
+%font=\footnotesize, thin,
+%tick style={ultra thin}}} %modifica la tipografia de los ejes cuando graficas
+%****************************************************************************
+\usepackage{subfig}
+\usepackage{xcolor}
+%\usepackage{subcaption} 
+\usepackage{chemfig} %para dibujar estructuras químicas
+\usepackage{float} % para usar el delimitador de posicion [H] en el enotonro figure
+ %******************************************************************
+\input{arsclassica-settings}
+%******************************************************************
+%         PRUEBA CON ECUACIONES
+%******************************************************************
+\newenvironment{conditions*}
+  {\par\vspace{\abovedisplayskip}\noindent
+   \tabularx{\columnwidth}{>{$}l<{$} @{\ : } >{\raggedright\arraybackslash}X}}
+  {\endtabularx\par\vspace{\belowdisplayskip}}
+  
+%***********************************************************************
+%       Flechas
+%**********************************************************************
+\usepackage{tikz}
+\usetikzlibrary{calc} 
+
+ \newcommand\tikzmark[1]{%
+   \tikz[remember picture] \coordinate (#1);}
+  %Con este comando podemos superponer una imagen tikz, que para nuestro caso
+  %se refiere a la flecha de la tabla 1.
+
+\begin{document}
+%\pagenumbering{roman}
+\pagestyle{plain}
+%******************************************************************
+% Frontmatter
+%******************************************************************
+%\input{FrontBackMatter/Titlepage}
+\input{FrontBackMatter/Portada}
+\input{FrontBackMatter/Titleback}
+%***********************FOTO ANTES DE LA NUMERACION
+%\input{FrontBackMatter/antesdeabs}
+%****************************************************************
+\pagenumbering{roman} 
+\clearpage
+\input{FrontBackMatter/Abstract+Sommario}
+%\clearpage
+%\input{FrontBackMatter/Acknowledgements}
+%\pagestyle{scrheadings} 
+\clearpage
+\input{FrontBackMatter/Contents}
+\cleardoublepage
+
+%******************************************************************
+% Chapters
+%*****************************************************************
+\pagenumbering{arabic}
+%\input{Chapters/Introduccion}
+%\input{Chapters/Antescedentes}
+%\input{Chapters/Surfactantes}
+%\input{Chapters/Reologia}
+%\input{Chapters/Descripción del campo}     % Así agregamos un capitulo nuevo
+\input{Chapters/Metodo}
+\input{Chapters/Resultados}
+
+% Backmatter
+%**************** BIBLIOGRAFIA*************************************
+\input{FrontBackMatter/Bibliography}
+\clearpage
+%\input{FrontBackMatter/Index}
+\end{document}
