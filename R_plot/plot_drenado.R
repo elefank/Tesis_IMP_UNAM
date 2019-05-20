@@ -54,14 +54,14 @@ intersector <- function(lista){
 }
 
 intersecciones <- 
-  lapply(Curvas_drenado_gel, intersector)
+  lapply(Curvas_drenado_agua, intersector)
 
 names(intersecciones) <-
   c("0.5","1.0","3.0","5.0","10.0","13.0","15.0")
 
 con = data.table(con = c(0.5,1.0,3.0,5.0,10.0,13.0,15.0))
 
-sink(file = "./drenado_gel.csv",
+sink(file = "./drenado_agua.csv",
      append = FALSE)
 
 intersecciones %>% 
@@ -82,11 +82,16 @@ new %>% str()
 ggplot(data = new) +
   geom_point(mapping = aes(x = 1,
                            y = y,
-                           colour = as.factor(con))) +
+                           colour = as.factor(con)),
+             size = 3,
+             alpha = 0.6) +
   theme_classic() +
   facet_grid(facets = .~con, switch = "x") +
-  xlab("Concentración") +
-  ylab("Agua [ml]") +
+  #ggtitle("Drenado del agua (intersección)") +
+  ggtitle("Drenado del gel (intersección)") +
+  xlab("Concentración [%] ") +
+  #ylab("Agua [ml]") +
+  ylab("Gel [ml]") +
   theme(axis.line.x = element_blank(),
         axis.ticks.x = element_blank(),
         axis.text.x = element_blank(),
